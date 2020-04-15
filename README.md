@@ -1,3 +1,6 @@
+**Update**
+I modified docker-stack.yaml to include "POSTGRES_HOST_AUTH_METHOD: "trust"" since the app does not use a postgres password
+
 Example Voting App
 =========
 
