@@ -5,6 +5,8 @@ services:
     image: redis:alpine
     networks:
       - frontend
+    dns:
+      - 8.8.8.8
     deploy:
       replicas: 1
       update_config:
@@ -21,6 +23,7 @@ services:
       - db-data:/var/lib/postgresql/data
     networks:
       - backend
+    dns: 8.8.8.8
     deploy:
       placement:
         constraints: [node.role == manager]
@@ -30,6 +33,7 @@ services:
       - 5000:80
     networks:
       - frontend
+    dns: 8.8.8.8
     depends_on:
       - redis
     deploy:
@@ -44,6 +48,7 @@ services:
       - 5001:80
     networks:
       - backend
+    dns: 8.8.8.8
     depends_on:
       - db
     deploy:
@@ -59,6 +64,7 @@ services:
     networks:
       - frontend
       - backend
+    dns: 8.8.8.8
     depends_on:
       - db
       - redis
@@ -76,8 +82,10 @@ services:
 
   visualizer:
     image: dockersamples/visualizer:stable
+    network:
+      - frontend
     ports:
-      - "8080:8080"
+      - "8086:8080"
     stop_grace_period: 1m30s
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
