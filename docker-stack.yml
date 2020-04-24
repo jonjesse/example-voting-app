@@ -82,7 +82,7 @@ services:
 
   visualizer:
     image: dockersamples/visualizer:stable
-    network:
+    networks:
       - frontend
     ports:
       - "8086:8080"
