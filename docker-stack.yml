@@ -84,6 +84,8 @@ services:
     image: dockersamples/visualizer:stable
     networks:
       - frontend
+    dns:
+      - 8.8.8.8
     ports:
       - "8086:8080"
     stop_grace_period: 1m30s
